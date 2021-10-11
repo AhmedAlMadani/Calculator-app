@@ -49,7 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (buttonText == "+" ||
         buttonText == "-" ||
         buttonText == "X" ||
-        buttonText == "/") {
+        buttonText == "/" ||
+        buttonText == "^") {
       num1 = double.parse(output);
       operand = buttonText;
       _output = "0";
@@ -75,12 +76,15 @@ class _MyHomePageState extends State<MyHomePage> {
       if (operand == "/") {
         _output = (num1 / num2).toString();
       }
+      if (operand == "^") {
+        _output = (num1 * num2).toString();
+      }
 
       num1 = 0.0;
       num2 = 0.0;
       operand = "";
     } else {
-      _output = _output + buttonText;
+      _output = output + buttonText;
     }
 
     print(_output);
@@ -154,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       buildButton("."),
                       buildButton("0"),
-                      buildButton("00"),
+                      buildButton("^"),
                       buildButton("+"),
                     ],
                   ),
