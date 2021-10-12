@@ -1,6 +1,4 @@
-// ignore_for_file: unnecessary_new
-
-import 'dart:ffi';
+// ignore_for_file: unnecessary_new, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 
@@ -48,9 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
       operand = "";
     } else if (buttonText == "+" ||
         buttonText == "-" ||
-        buttonText == "X" ||
+        buttonText == "*" ||
         buttonText == "/" ||
-        buttonText == "^") {
+        buttonText == "^2") {
       num1 = double.parse(output);
       operand = buttonText;
       _output = "0";
@@ -70,14 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
       if (operand == "-") {
         _output = (num1 - num2).toString();
       }
-      if (operand == "X") {
+      if (operand == "*") {
         _output = (num1 * num2).toString();
       }
       if (operand == "/") {
         _output = (num1 / num2).toString();
       }
-      if (operand == "^") {
-        _output = (num1 * num2).toString();
+      if (operand == "^2") {
+        _output = (num1 * num1).toString();
       }
 
       num1 = 0.0;
@@ -115,7 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: new Container(
-          // ignore: unnecessary_new
           child: new Column(
             children: <Widget>[
               new Container(
@@ -143,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       buildButton("4"),
                       buildButton("5"),
                       buildButton("6"),
-                      buildButton("x"),
+                      buildButton("*"),
                     ],
                   ),
                   Row(
@@ -158,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       buildButton("."),
                       buildButton("0"),
-                      buildButton("^"),
+                      buildButton("^2"),
                       buildButton("+"),
                     ],
                   ),
