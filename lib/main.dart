@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       num2 = 0.0;
       operand = "";
     } else {
-      _output = output + buttonText;
+      _output = _output + buttonText;
     }
 
     print(_output);
