@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_new, avoid_unnecessary_containers
 
+import 'package:calculator/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.blueGrey,
       ),
       home: const MyHomePage(title: 'Calculator'),
     );
@@ -109,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: NavigationDrawerWidget(),
         appBar: AppBar(
           title: Text(widget.title),
         ),
