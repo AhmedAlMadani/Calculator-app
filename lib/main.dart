@@ -1,7 +1,9 @@
 // ignore_for_file: unnecessary_new, avoid_unnecessary_containers
 
 import 'package:calculator/widget/navigation_drawer_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,65 +34,89 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String output = "0";
+  // String output = "0";
+  // String _output = "0";
+  // double num1 = 0.0;
+  // double num2 = 0.0;
+  // String operand = "";
+  // List<String> outputList = [];
+  double firstNum = 0;
+  double secondNum = 0;
+  String value = '';
+  String history = '';
+  String textToDisplay = '';
+  String result = '';
+  String operation = '';
 
-  String _output = "0";
-  double num1 = 0.0;
-  double num2 = 0.0;
-  String operand = "";
+  List<String> historyList = [];
+  // Map<dynamic, String> newHistoryList = [] as Map<dynamic, String>;
 
-  buttonPressed(String buttonText) {
+  void buttonPressed(String buttonText) async {
+    print(buttonText);
+
     if (buttonText == "CLEAR") {
-      _output = "0";
-      num1 = 0.0;
-      num2 = 0.0;
-      operand = "";
+      textToDisplay = '';
+      firstNum = 0;
+      secondNum = 0;
+      result = '';
+      history = '';
     } else if (buttonText == "+" ||
         buttonText == "-" ||
         buttonText == "*" ||
-        buttonText == "/" ||
-        buttonText == "^2") {
-      num1 = double.parse(output);
-      operand = buttonText;
-      _output = "0";
-    } else if (buttonText == ".") {
-      if (_output.contains(".")) {
-        print("Already contains a decimal");
-        return;
-      } else {
-        _output = _output + buttonText;
-      }
+        buttonText == "/") {
+      firstNum = double.parse(textToDisplay);
+      result = '';
+      operation = buttonText;
     } else if (buttonText == "=") {
-      num2 = double.parse(output);
-
-      if (operand == "+") {
-        _output = (num1 + num2).toString();
+      secondNum = double.parse(textToDisplay);
+      if (operation == '+') {
+        result = (firstNum + secondNum).toString();
       }
-      if (operand == "-") {
-        _output = (num1 - num2).toString();
+      if (operation == '-') {
+        result = (firstNum - secondNum).toString();
       }
-      if (operand == "*") {
-        _output = (num1 * num2).toString();
+      if (operation == '*') {
+        result = (firstNum * secondNum).toString();
       }
-      if (operand == "/") {
-        _output = (num1 / num2).toString();
-      }
-      if (operand == "^2") {
-        _output = (num1 * num1).toString();
+      if (operation == '/') {
+        result = (firstNum / secondNum).toString();
       }
 
-      num1 = 0.0;
-      num2 = 0.0;
-      operand = "";
+      value = firstNum.toString() +
+          " " +
+          operation.toString() +
+          " " +
+          secondNum.toString() +
+          " = " +
+          result.toString();
+
+      history = value;
+    } else if (buttonText == "^2") {
+      firstNum = double.parse(textToDisplay);
+      result = (firstNum * firstNum).toString();
+
+      value = firstNum.toString() +
+          " " +
+          operation.toString() +
+          " " +
+          firstNum.toString() +
+          " = " +
+          result.toString();
+
+      history = value;
     } else {
-      _output = _output + buttonText;
+      result = (textToDisplay + buttonText).toString();
     }
 
-    print(_output);
+    historyList.add(history);
+    print(historyList);
 
     setState(() {
-      output = double.parse(_output).toStringAsFixed(2);
+      textToDisplay = result;
     });
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('history', historyList);
   }
 
   Widget buildButton(String buttonText) {
@@ -122,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.symmetric(
                       vertical: 36.0, horizontal: 12.0),
                   child: new Text(
-                    output,
+                    textToDisplay,
                     style: const TextStyle(
                         fontSize: 48.0, fontWeight: FontWeight.bold),
                   )),
