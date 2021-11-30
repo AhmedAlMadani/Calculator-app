@@ -1,7 +1,4 @@
-// ignore_for_file: unnecessary_new, avoid_unnecessary_containers
-
 import 'package:calculator/widget/navigation_drawer_widget.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -34,12 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // String output = "0";
-  // String _output = "0";
-  // double num1 = 0.0;
-  // double num2 = 0.0;
-  // String operand = "";
-  // List<String> outputList = [];
   double firstNum = 0;
   double secondNum = 0;
   String value = '';
@@ -49,11 +40,12 @@ class _MyHomePageState extends State<MyHomePage> {
   String operation = '';
 
   List<String> historyList = [];
-  // Map<dynamic, String> newHistoryList = [] as Map<dynamic, String>;
 
-  void buttonPressed(String buttonText) async {
+  String newHistory = '';
+
+  buttonPressed(String buttonText) async {
     print(buttonText);
-
+    history = '';
     if (buttonText == "CLEAR") {
       textToDisplay = '';
       firstNum = 0;
@@ -69,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       operation = buttonText;
     } else if (buttonText == "=") {
       secondNum = double.parse(textToDisplay);
+
       if (operation == '+') {
         result = (firstNum + secondNum).toString();
       }
@@ -81,50 +74,73 @@ class _MyHomePageState extends State<MyHomePage> {
       if (operation == '/') {
         result = (firstNum / secondNum).toString();
       }
-
-      value = firstNum.toString() +
-          " " +
-          operation.toString() +
-          " " +
-          secondNum.toString() +
-          " = " +
-          result.toString();
-
-      history = value;
     } else if (buttonText == "^2") {
       firstNum = double.parse(textToDisplay);
+      operation = buttonText;
       result = (firstNum * firstNum).toString();
-
-      value = firstNum.toString() +
-          " " +
-          operation.toString() +
-          " " +
-          firstNum.toString() +
-          " = " +
-          result.toString();
-
-      history = value;
     } else {
       result = (textToDisplay + buttonText).toString();
     }
 
-    historyList.add(history);
-    print(historyList);
-
     setState(() {
       textToDisplay = result;
     });
+
+    if (historyList == null) {
+      if (buttonText == "=") {
+        history = firstNum.toString() +
+            " " +
+            operation.toString() +
+            " " +
+            secondNum.toString() +
+            " = $result";
+      }
+      if (buttonText == "^2") {
+        history = firstNum.toString() +
+            " " +
+            operation.toString() +
+            " " +
+            firstNum.toString() +
+            " = $result";
+      }
+
+      historyList.add(history);
+      historyList.remove('');
+
+      setState(() {});
+    } else if (historyList != null) {
+      if (buttonText == "=") {
+        newHistory = firstNum.toString() +
+            " " +
+            operation.toString() +
+            " " +
+            secondNum.toString() +
+            " = $result";
+      }
+      if (buttonText == "^2") {
+        newHistory = firstNum.toString() +
+            " " +
+            operation.toString() +
+            " " +
+            firstNum.toString() +
+            " = $result";
+      }
+
+      historyList.add(newHistory);
+      historyList.remove('');
+
+      setState(() {});
+    }
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('history', historyList);
   }
 
   Widget buildButton(String buttonText) {
-    return new Expanded(
-      // ignore: deprecated_member_use
-      child: new OutlineButton(
+    return Expanded(
+      child: OutlineButton(
         padding: const EdgeInsets.all(24.0),
-        child: new Text(
+        child: Text(
           buttonText,
           style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
         ),
@@ -140,20 +156,20 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: new Container(
-          child: new Column(
+        body: Container(
+          child: Column(
             children: <Widget>[
-              new Container(
+              Container(
                   alignment: Alignment.centerRight,
                   padding: const EdgeInsets.symmetric(
                       vertical: 36.0, horizontal: 12.0),
-                  child: new Text(
+                  child: Text(
                     textToDisplay,
                     style: const TextStyle(
                         fontSize: 48.0, fontWeight: FontWeight.bold),
                   )),
               const Expanded(child: Divider()),
-              new Column(
+              Column(
                 children: [
                   Row(
                     children: [

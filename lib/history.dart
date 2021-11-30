@@ -10,7 +10,8 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  List<String> history = [];
+  List<String> historyList = [];
+  List<String> listToShow = [];
 
   @override
   void initState() {
@@ -19,27 +20,26 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    historyList = prefs.getStringList('history')!.toList();
     setState(() {
-      history = prefs.getStringList('history')!;
+      listToShow = historyList;
     });
-    print(history);
+    print(listToShow);
   }
 
   @override
   Widget build(BuildContext context) {
     display() {
-      if (history != null) {
-        return Text(
-          'Equation : $history ',
-          style: TextStyle(fontSize: 20),
-        );
-      }
+      return Text(
+        'Equation : $listToShow ',
+        style: const TextStyle(fontSize: 20),
+      );
     }
 
     return Scaffold(
       drawer: NavigationDrawerWidget(),
       appBar: AppBar(
-        title: Text("History"),
+        title: const Text("History"),
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
       ),
@@ -47,7 +47,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: display(),
           ),
         ],

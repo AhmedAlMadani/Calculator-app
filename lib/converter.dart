@@ -2,22 +2,6 @@ import 'package:calculator/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-// class ConverterScreen extends StatelessWidget {
-//   const ConverterScreen({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       drawer: NavigationDrawerWidget(),
-//       appBar: AppBar(
-//         title: const Text("Unit Converter"),
-//         centerTitle: true,
-//         backgroundColor: Colors.blueGrey,
-//       ),
-//     );
-//   }
-// }
-
 class Converter extends StatefulWidget {
   const Converter({Key? key}) : super(key: key);
 
@@ -63,6 +47,7 @@ class _ConverterState extends State<Converter> {
   String? _convertMeasures;
   String? resultMessage;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawerWidget(),
@@ -90,21 +75,21 @@ class _ConverterState extends State<Converter> {
                       });
                     }
                   },
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.blueGrey,
                       hintText: 'Enter Your Value',
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       )),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Text(
+              const Text(
                 'From',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
               ),
@@ -115,12 +100,12 @@ class _ConverterState extends State<Converter> {
                   value: _startMeasures,
                   isExpanded: true,
                   dropdownColor: Colors.blueGrey,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.w600),
                   borderRadius: BorderRadius.circular(20),
                   hint: Text(
                     'Choose a unit',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.w600),
                   ),
                   items: measures.map((String value) {
@@ -134,10 +119,10 @@ class _ConverterState extends State<Converter> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Text(
+              const Text(
                 'To',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
               ),
@@ -148,7 +133,7 @@ class _ConverterState extends State<Converter> {
                   value: _convertMeasures,
                   isExpanded: true,
                   dropdownColor: Colors.blueGrey,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.w600),
                   borderRadius: BorderRadius.circular(20),
                   hint: Text(
@@ -167,17 +152,18 @@ class _ConverterState extends State<Converter> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               FlatButton(
                 onPressed: () {
                   if (userInput == 0 ||
                       _startMeasures!.isEmpty ||
-                      _convertMeasures!.isEmpty)
+                      _convertMeasures!.isEmpty) {
                     return;
-                  else
+                  } else {
                     convert(userInput!, _startMeasures!, _convertMeasures!);
+                  }
                 },
                 child: Container(
                   width: 200,
@@ -185,7 +171,7 @@ class _ConverterState extends State<Converter> {
                   decoration: BoxDecoration(
                       color: Colors.blueGrey,
                       borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                     child: Text(
                       'Convert',
@@ -198,12 +184,13 @@ class _ConverterState extends State<Converter> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text(
                 (resultMessage.toString() == null)
                     ? ''
                     : resultMessage.toString(),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               )
             ],
           ),

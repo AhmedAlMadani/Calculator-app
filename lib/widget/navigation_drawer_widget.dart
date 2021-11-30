@@ -6,7 +6,7 @@ import 'package:calculator/main.dart';
 import 'package:flutter/material.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
-  final padding = EdgeInsets.symmetric(horizontal: 20, vertical: 20);
+  final padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 20);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   buildMenuItem(
       {required String text, required IconData icon, VoidCallback? onClicked}) {
     final color = Colors.white;
-    final hoverColor = Colors.white70;
+    const hoverColor = Colors.white70;
 
     return ListTile(
       leading: Icon(
