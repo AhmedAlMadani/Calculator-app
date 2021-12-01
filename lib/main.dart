@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String operation = '';
 
   List<String> historyList = [];
+  List<String> newHList = [];
 
   String newHistory = '';
 
@@ -86,51 +87,24 @@ class _MyHomePageState extends State<MyHomePage> {
       textToDisplay = result;
     });
 
-    if (historyList == null) {
-      if (buttonText == "=") {
-        history = firstNum.toString() +
-            " " +
-            operation.toString() +
-            " " +
-            secondNum.toString() +
-            " = $result";
-      }
-      if (buttonText == "^2") {
-        history = firstNum.toString() +
-            " " +
-            operation.toString() +
-            " " +
-            firstNum.toString() +
-            " = $result";
-      }
-
-      historyList.add(history);
-      historyList.remove('');
-
-      setState(() {});
-    } else if (historyList != null) {
-      if (buttonText == "=") {
-        newHistory = firstNum.toString() +
-            " " +
-            operation.toString() +
-            " " +
-            secondNum.toString() +
-            " = $result";
-      }
-      if (buttonText == "^2") {
-        newHistory = firstNum.toString() +
-            " " +
-            operation.toString() +
-            " " +
-            firstNum.toString() +
-            " = $result";
-      }
-
-      historyList.add(newHistory);
-      historyList.remove('');
-
-      setState(() {});
+    if (buttonText == "=") {
+      history = firstNum.toString() +
+          " " +
+          operation.toString() +
+          " " +
+          secondNum.toString() +
+          " = $result";
     }
+    if (buttonText == "^2") {
+      history = firstNum.toString() +
+          " (" +
+          operation.toString() +
+          ") " +
+          " = $result";
+    }
+
+    historyList.add(history);
+    historyList.remove('');
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('history', historyList);
@@ -138,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildButton(String buttonText) {
     return Expanded(
+      // ignore: deprecated_member_use
       child: OutlineButton(
         padding: const EdgeInsets.all(24.0),
         child: Text(
