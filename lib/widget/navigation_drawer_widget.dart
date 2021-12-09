@@ -1,12 +1,14 @@
 //import 'package:flutter/cupertino.dart';
 
-import 'package:calculator/converter.dart';
-import 'package:calculator/history.dart';
+import 'package:calculator/Converter/converter.dart';
+import 'package:calculator/History/firebase_history.dart';
+import 'package:calculator/History/history.dart';
 import 'package:calculator/main.dart';
 import 'package:flutter/material.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 20);
+  const NavigationDrawerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,12 @@ class NavigationDrawerWidget extends StatelessWidget {
               text: 'History',
               icon: Icons.history_edu,
               onClicked: () => selectedItem(context, 2),
+            ),
+            const SizedBox(height: 00),
+            buildMenuItem(
+              text: 'Firebase History',
+              icon: Icons.history_edu,
+              onClicked: () => selectedItem(context, 3),
             ),
           ],
         ),
@@ -78,6 +86,11 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => const HistoryScreen(),
+        ));
+        break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const FirebaseData(),
         ));
     }
   }

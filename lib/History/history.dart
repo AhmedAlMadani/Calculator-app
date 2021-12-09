@@ -19,6 +19,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
     setState(() {
       historyList = prefs.getStringList('history')!.toList();
     });
@@ -46,21 +47,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
     }
 
     return Scaffold(
-      drawer: NavigationDrawerWidget(),
+      drawer: const NavigationDrawerWidget(),
       appBar: AppBar(
         title: const Text("History"),
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: display(),
-          ),
-        ],
-      ),
+      body: display(),
     );
   }
 }

@@ -50,7 +50,7 @@ class _ConverterState extends State<Converter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationDrawerWidget(),
+      drawer: const NavigationDrawerWidget(),
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Unit Converter"),
@@ -67,8 +67,8 @@ class _ConverterState extends State<Converter> {
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                 child: TextField(
                   onChanged: (text) {
-                    var input = double.tryParse(
-                        text); //change string to double#############################################################################################
+                    var input =
+                        double.tryParse(text); //change string to double#####
                     if (input != null) {
                       setState(() {
                         userInput = input;

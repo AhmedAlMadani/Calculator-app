@@ -1,0 +1,31 @@
+{
+    "project_info": {
+        "project_number": "498427337994",
+        "project_id": "calculator-app-ahmed",
+        "storage_bucket": "calculator-app-ahmed.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:498427337994:android:75e1a7a2e8d130f3f46ef3",
+            "android_client_info": {
+                "package_name": "com.example.calculator"
+            }
+        },
+        "oauth_client": [{
+            "client_id": "498427337994-i0mei5b6eptlsqetem29v1vvrrgkahfr.apps.googleusercontent.com",
+            "client_type": 3
+        }],
+        "api_key": [{
+            "current_key": "AIzaSyC3IhSgGeVsOGBsR2P7_nG_u1r1AijNKIs"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                    "client_id": "498427337994-i0mei5b6eptlsqetem29v1vvrrgkahfr.apps.googleusercontent.com",
+                    "client_type": 3
+                }]
+            }
+        }
+    }],
+    "configuration_version": "1"
+}

@@ -1,8 +1,13 @@
 import 'package:calculator/widget/navigation_drawer_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+import 'Database/database_manager.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -94,6 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
           " " +
           secondNum.toString() +
           " = $result";
+      historyList.add(history);
+      await DatabaseManager().createHistoryData(history);
     }
     if (buttonText == "^2") {
       history = firstNum.toString() +
@@ -101,10 +108,11 @@ class _MyHomePageState extends State<MyHomePage> {
           operation.toString() +
           ") " +
           " = $result";
+      historyList.add(history);
+      await DatabaseManager().createHistoryData(history);
     }
 
-    historyList.add(history);
-    historyList.remove('');
+    //historyList.remove('');
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('history', historyList);
