@@ -14,7 +14,6 @@ class FirebaseData extends StatefulWidget {
 }
 
 class _FirebaseDataState extends State<FirebaseData> {
-  List<String> firebaseHistoryList = [];
 
   @override
   void initState() {

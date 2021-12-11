@@ -16,13 +16,13 @@ class _ConverterState extends State<Converter> {
     super.initState();
   }
 
-  final List<String> measures = ['Meters', 'Kilometers'];
+  final List<String> measures = ['Miles', 'Kilometers'];
 
-  final Map<String, int> measuresMap = {'Meters': 0, 'Kilometers': 1};
+  final Map<String, int> measuresMap = {'Miles': 0, 'Kilometers': 1};
 
   dynamic formulas = {
-    '0': [1, 0.001],
-    '1': [1000, 1]
+    '0': [1, 1.60934],
+    '1': [0.62137119, 1]
   };
 
   void convert(double value, String from, String to) {
@@ -155,6 +155,7 @@ class _ConverterState extends State<Converter> {
               const SizedBox(
                 height: 50,
               ),
+              // ignore: deprecated_member_use
               FlatButton(
                 onPressed: () {
                   if (userInput == 0 ||
