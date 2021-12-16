@@ -1,10 +1,15 @@
 //import 'package:flutter/cupertino.dart';
 
-import 'package:calculator/Converter/converter.dart';
-import 'package:calculator/History/firebase_history.dart';
-import 'package:calculator/History/history.dart';
-import 'package:calculator/main.dart';
+// import 'package:calculator/Converter/converter.dart';
+// import 'package:calculator/History/firebase_history.dart';
+// import 'package:calculator/History/history.dart';
+// import 'package:calculator/main.dart';
+
 import 'package:flutter/material.dart';
+import '../main.dart';
+import '../converter/converter.dart';
+import '../History/history.dart';
+import '../History/firebase_history.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 20);
@@ -75,7 +80,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const MyApp(),
+          builder: (context) => MyApp(),
         ));
         break;
       case 1:

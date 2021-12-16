@@ -1,9 +1,8 @@
-import 'package:calculator/Database/database_manager.dart';
-import 'package:calculator/widget/navigation_drawer_widget.dart';
+import '../database/database_manager.dart';
+import '../Components/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_firestore/firebase_firestore.dart';
 
 class FirebaseData extends StatefulWidget {
@@ -14,7 +13,6 @@ class FirebaseData extends StatefulWidget {
 }
 
 class _FirebaseDataState extends State<FirebaseData> {
-
   @override
   void initState() {
     super.initState();

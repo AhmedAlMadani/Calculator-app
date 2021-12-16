@@ -1,4 +1,4 @@
-import 'package:calculator/widget/navigation_drawer_widget.dart';
+import '../Components/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,8 +18,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   getData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    // setState(() {
+    //   historyList = prefs.getStringList('history')!.toList();
+    // });
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       historyList = prefs.getStringList('history')!.toList();
     });
