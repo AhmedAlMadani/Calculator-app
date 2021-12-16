@@ -1,10 +1,3 @@
-//import 'package:flutter/cupertino.dart';
-
-// import 'package:calculator/Converter/converter.dart';
-// import 'package:calculator/History/firebase_history.dart';
-// import 'package:calculator/History/history.dart';
-// import 'package:calculator/main.dart';
-
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../converter/converter.dart';

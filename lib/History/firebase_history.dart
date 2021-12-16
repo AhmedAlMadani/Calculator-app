@@ -1,9 +1,7 @@
+import 'package:flutter/material.dart';
 import '../database/database_manager.dart';
 import '../Components/navigation.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-// import 'package:firebase_firestore/firebase_firestore.dart';
 
 class FirebaseData extends StatefulWidget {
   const FirebaseData({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
-import '../Components/navigation.dart';
 import 'package:flutter/material.dart';
+import '../Components/navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -18,11 +18,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   getData() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // setState(() {
-    //   historyList = prefs.getStringList('history')!.toList();
-    // });
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       historyList = prefs.getStringList('history')!.toList();
@@ -33,7 +28,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     display() {
       return ListView.builder(
-          // padding: const EdgeInsets.all(8),
           shrinkWrap: true,
           itemCount: historyList.length,
           itemBuilder: (context, index) {

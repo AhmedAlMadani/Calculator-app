@@ -1,10 +1,10 @@
-import 'Database/database_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'Components/navigation.dart';
 import 'Components/button.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'Components/navigation.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'Database/database_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       home: HomePage(),
-    ); // MaterialApp
+    );
   }
 }
 
@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
   var history = '';
   List<String> historyList = [];
 
-  // Array of button
   final List<String> buttons = [
     'C',
     '+/-',
@@ -66,7 +65,7 @@ class _HomePageState extends State<HomePage> {
       drawer: const NavigationDrawerWidget(),
       appBar: AppBar(
         title: const Text("Calculator"),
-      ), //AppBar
+      ),
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
@@ -106,7 +105,6 @@ class _HomePageState extends State<HomePage> {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4),
                   itemBuilder: (BuildContext context, int index) {
-                    // Clear Button
                     if (index == 0) {
                       return MyButton(
                         buttontapped: () {
@@ -119,18 +117,13 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.blueGrey[100],
                         textColor: Colors.black,
                       );
-                    }
-
-                    // +/- button
-                    else if (index == 1) {
+                    } else if (index == 1) {
                       return MyButton(
                         buttonText: buttons[index],
                         color: Colors.blueGrey[100],
                         textColor: Colors.black,
                       );
-                    }
-                    // % Button
-                    else if (index == 2) {
+                    } else if (index == 2) {
                       return MyButton(
                         buttontapped: () {
                           setState(() {
@@ -141,9 +134,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.blueGrey[100],
                         textColor: Colors.black,
                       );
-                    }
-                    // Delete Button
-                    else if (index == 3) {
+                    } else if (index == 3) {
                       return MyButton(
                         buttontapped: () {
                           setState(() {
@@ -155,9 +146,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.blueGrey[100],
                         textColor: Colors.black,
                       );
-                    }
-                    // Equal_to Button
-                    else if (index == 18) {
+                    } else if (index == 18) {
                       return MyButton(
                         buttontapped: () {
                           setState(() {
@@ -168,10 +157,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.blueGrey[300],
                         textColor: Colors.white,
                       );
-                    }
-
-                    //  other buttons
-                    else {
+                    } else {
                       return MyButton(
                         buttontapped: () {
                           setState(() {
@@ -187,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                             : Colors.black,
                       );
                     }
-                  }), // GridView.builder
+                  }),
             ),
           ),
         ],
@@ -202,7 +188,6 @@ class _HomePageState extends State<HomePage> {
     return false;
   }
 
-// function to calculate the input operation
   Future<void> equalPressed() async {
     String finaluserinput = userInput;
     finaluserinput = userInput.replaceAll('x', '*');
